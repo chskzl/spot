@@ -3,6 +3,8 @@
 from bs4 import BeautifulSoup
 import requests
 
+# Get metal price
+
 spot = requests.get('http://widgets.apmex.com/widget/spotprice/?w=280&amp;h=180&amp;mtls=GSPL&amp;arf=False&amp;rint=5&amp;srf=False&amp;tId=1&amp;cId=fd9762f2-d15f-4141-9931-89fc33dfff60&amp;wId=1')
 
 soup = BeautifulSoup(spot.text, 'lxml')
@@ -30,6 +32,8 @@ for metal in soup.find_all('tr'):
 	if metal_name != "" and jndex < 8:
 		print(metal_name.ljust(12," ") + spot_price.rjust(10," ") + " (" + change[0] + change[2:] + ")")
 	jndex += 1
+
+# Get cryptocurrency price
 
 spot = requests.get('https://www.coindesk.com')
 
